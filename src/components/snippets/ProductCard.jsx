@@ -1,22 +1,51 @@
-import { useEffect } from "react";
+import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-function ProductCard({ imageSrc, productName, vendor, price }) {
-  useEffect(() => {});
+import App from "../../App";
+
+function ProductCard({ imageSrc, productName, price, id }) {
+  const [quantity, setQuantity] = useState(1);
 
   return (
-    <div className="product-card flex w-fit flex-col items-center gap-2 space-x-4 rounded-xl border border-gray-500 p-5">
+    <div className="product-card flex w-auto flex-col rounded-md border border-gray-300">
       <img
-        src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-        className="product-card-img w-48 "
-        alt="product-imagee"
+        src={imageSrc}
+        className="product-card-img h-32 self-center rounded-md rounded-b-none"
+        alt={productName}
       ></img>
-      <span className="product-card-name text-lg">Intel i9 - 16 core CPU</span>
-      <span className="product-card-price">$899</span>
-      <button className="card-add-to-cart rounded-full border border-purple-300 px-4 py-1 text-sm font-semibold text-purple-600 hover:border-transparent hover:bg-purple-600 hover:text-white">
-        Add to cart
-      </button>
+      <div className="card-info flex grow flex-col items-start justify-between gap-1 p-2">
+        <Link to={"/product/" + id}>
+          <div className="box-border max-w-60 truncate">
+            <span className="product-card-name text-xs hover:underline">
+              {productName}
+            </span>
+          </div>
+        </Link>
+        <span className="product-card-price">{price + " USD"}</span>
+        <input
+          type="number"
+          value={quantity}
+          onChange={(e) => setQuantity(e.target.value)}
+        />
+        <button
+          data-id={id}
+          data-quantity={quantity}
+          className="card-add-to-cart mt-2 rounded-md bg-gray-600 px-4 py-1 text-xs font-semibold text-white hover:border hover:border-black hover:bg-transparent hover:text-black"
+          onClick={App.AddToCart}
+        >
+          Add to cart
+        </button>
+      </div>
     </div>
   );
 }
+
+ProductCard.protoTypes = {
+  imageSrc: PropTypes.string.isRequired,
+  productName: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
+};
 
 export default ProductCard;

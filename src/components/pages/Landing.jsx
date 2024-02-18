@@ -1,7 +1,5 @@
-import ProductCard from "../snippets/ProductCard";
-
 function Landing() {
-  return <ProductCard />;
+  return <></>;
 }
 
 export default Landing;
