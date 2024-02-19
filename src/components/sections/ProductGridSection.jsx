@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import useSWR from "swr";
-
 import ProductCard from "../snippets/ProductCard";
-import { data } from "autoprefixer";
 
 function ProductGridSection() {
   const [products, setProducts] = useState([]);
@@ -14,7 +11,7 @@ function ProductGridSection() {
   }, []);
 
   return (
-    <div className="product-grid grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4">
+    <section className="product-grid grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4">
       {products.map((product) => {
         return (
           <ProductCard
@@ -26,7 +23,7 @@ function ProductGridSection() {
           />
         );
       })}
-    </div>
+    </section>
   );
 }
 

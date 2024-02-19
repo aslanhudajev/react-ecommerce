@@ -1,4 +1,4 @@
-import App from "../../App";
+import PropTypes from "prop-types";
 
 function CartItem({ imageSrc, name, price, quantity, id, removeFromCart }) {
   return (
@@ -24,5 +24,14 @@ function CartItem({ imageSrc, name, price, quantity, id, removeFromCart }) {
     </div>
   );
 }
+
+CartItem.propTypes = {
+  imageSrc: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired,
+  id: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+  removeFromCart: PropTypes.func,
+};
 
 export default CartItem;

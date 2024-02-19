@@ -44,7 +44,7 @@ function ProductCard({ imageSrc, productName, price, id }) {
   );
 }
 
-ProductCard.protoTypes = {
+ProductCard.propTypes = {
   imageSrc: PropTypes.string.isRequired,
   productName: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,

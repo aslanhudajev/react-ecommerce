@@ -19,7 +19,7 @@ const App = (function () {
       cart.push({
         imageSrc: productToAdd.image,
         name: productToAdd.title,
-        price: productToAdd.price,
+        price: parseInt(productToAdd.price),
         quantity: parseInt(e.target.dataset.quantity),
         id: productToAdd.id,
       });
@@ -35,7 +35,15 @@ const App = (function () {
     return cartCopy;
   }
 
-  return { AddToCart, RemoveFromCart, GetCart };
+  function GetTotal() {
+    let accum = 0;
+    for (const product of cart) {
+      accum += product.price * product.quantity;
+    }
+    return accum;
+  }
+
+  return { AddToCart, RemoveFromCart, GetCart, GetTotal };
 })();
 
 export default App;
