@@ -1,8 +1,25 @@
-# React + Vite
+# React Ecommerce Store Example
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Stack:
 
-Currently, two official plugins are available:
+- `Vite`
+- `React`
+- `Netlify`
+- `react-router-dom`
+- `tailwindcss`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Description
+
+This is a simple example of an ecommerce platform made in React.
+The platform is routed using `react-router-dom`, which makes this application a SPA (Single Page Application).
+
+This application includes components for: `pages`, `sections` and `snippets` (following the Shopify formula).
+Each page component is routed to using a `RouterProvider` from `react-router-dom`. All "page" links are made using the `Link` element from `react-router-dom`.
+
+All central `cart` logic is handled in `App.js`.
+
+## What I learned
+
+- How to do routing.
+- How to use tailwindcss.
+- How to fetch REST API's using `useEffect()` hooks.
