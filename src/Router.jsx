@@ -4,6 +4,7 @@ import Root from "./components/pages/Root";
 import Landing from "./components/pages/Landing";
 import Shop from "./components/pages/Shop";
 import Cart from "./components/pages/Cart";
+import Product from "./components/pages/Product";
 
 function Router() {
   const router = createBrowserRouter([
@@ -30,12 +31,12 @@ function Router() {
           path: "/cart",
           element: <Cart />,
         },
+        {
+          path: "/product/:productId",
+          element: <Product />,
+        },
       ],
     },
-    // {
-    //   path: "/product/:productId",
-    //   element: <Product />,
-    // },
   ]);
 
   return <RouterProvider router={router} />;
