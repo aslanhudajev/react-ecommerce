@@ -23,19 +23,22 @@ function ProductCard({ imageSrc, productName, price, id }) {
           </div>
         </Link>
         <span className="product-card-price">{price + " USD"}</span>
-        <input
-          type="number"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-        />
-        <button
-          data-id={id}
-          data-quantity={quantity}
-          className="card-add-to-cart mt-2 rounded-md bg-gray-600 px-4 py-1 text-xs font-semibold text-white hover:border hover:border-black hover:bg-transparent hover:text-black"
-          onClick={App.AddToCart}
-        >
-          Add to cart
-        </button>
+        <div className="flex flex-row items-center justify-start gap-2">
+          <button
+            data-id={id}
+            data-quantity={quantity}
+            className="card-add-to-cart mt-2 rounded-md bg-gray-600 px-4 py-1 text-xs font-semibold text-white hover:border hover:border-black hover:bg-transparent hover:text-black"
+            onClick={App.AddToCart}
+          >
+            Add to cart
+          </button>
+          <input
+            className=" w-10"
+            type="number"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
+        </div>
       </div>
     </div>
   );

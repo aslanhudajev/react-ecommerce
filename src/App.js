@@ -1,40 +1,41 @@
-const App = function() {
-    let cart = [];
+const App = (function () {
+  let cart = [];
 
-    function ProductLoader(id) {
-        return fetch("https://fakestoreapi.com/products/" + id)
+  function ProductLoader(id) {
+    return fetch("https://fakestoreapi.com/products/" + id)
       .then((res) => res.json())
       .then((data) => data);
+  }
+
+  async function AddToCart(e) {
+    const productToAdd = await ProductLoader(e.target.dataset.id);
+    const productToAddExists = cart.find(
+      (product) => productToAdd.id === product.id,
+    );
+
+    if (productToAddExists) {
+      productToAddExists.quantity += parseInt(e.target.dataset.quantity);
+    } else {
+      cart.push({
+        imageSrc: productToAdd.image,
+        name: productToAdd.title,
+        price: productToAdd.price,
+        quantity: parseInt(e.target.dataset.quantity),
+        id: productToAdd.id,
+      });
     }
+  }
 
-    async function AddToCart(e, quantity) {
-        const productToAdd = await ProductLoader(e.target.dataset.id);
+  function RemoveFromCart(id) {
+    cart = cart.filter((product) => product.id !== id);
+  }
 
-        if(cart.find((product) => productToAdd.id === product.id)) {
+  function GetCart() {
+    const cartCopy = structuredClone(cart);
+    return cartCopy;
+  }
 
-        } else {  
-        cart.push({
-            imageSrc: productToAdd.image,
-            name: productToAdd.title,
-            price: productToAdd.price,
-            id: productToAdd.id,
-            quantity: quantity,
-        })
-        }
-
-        console.log(cart);
-    }
-
-    function RemoveFromCart(id) {
-        cart = cart.filter((product) => product.id !== id)
-    }
-
-    function GetCart() {
-        const cartCopy = structuredClone(cart);
-        return cartCopy;
-    }
-
-    return { AddToCart, RemoveFromCart, GetCart };
-}();
+  return { AddToCart, RemoveFromCart, GetCart };
+})();
 
 export default App;
